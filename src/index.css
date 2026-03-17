@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "JUST Sans";
+  src: url("/JUSTSans-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "JUST Sans", system-ui, -apple-system, sans-serif;
+  --color-brand-primary: #007aff;
+  --color-brand-secondary: #5856d6;
+  --color-brand-success: #34c759;
+  --color-brand-warning: #ff9500;
+  --color-brand-danger: #ff3b30;
+}
+
+:root {
+  --background: 255 255 255;
+  --foreground: 0 0 0;
+  --card: 255 255 255;
+  --card-foreground: 0 0 0;
+  --primary: 0 122 255;
+  --primary-foreground: 255 255 255;
+  --muted: 242 242 247;
+  --muted-foreground: 142 142 147;
+  --border: 230 230 235;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 0 0 0;
+    --foreground: 255 255 255;
+    --card: 28 28 30;
+    --card-foreground: 255 255 255;
+    --primary: 10 132 255;
+    --primary-foreground: 255 255 255;
+    --muted: 44 44 46;
+    --muted-foreground: 174 174 178;
+    --border: 56 56 58;
+  }
+}
+
+body {
+  @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))] antialiased;
+  font-family: var(--font-sans);
+}
+
+@utility glass {
+  @apply bg-white/70 dark:bg-black/70 backdrop-blur-md border border-white/20 dark:border-white/10;
+}
+
+@utility ios-card {
+  @apply bg-[rgb(var(--card))] rounded-2xl p-4 shadow-sm border border-[rgb(var(--border))] transition-all duration-200 active:scale-[0.98];
+}
+
+@utility ios-button {
+  @apply px-4 py-2 rounded-xl font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:active:scale-100;
+}
+
+@utility ios-button-primary {
+  @apply px-4 py-2 rounded-xl font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-[rgb(var(--primary))] text-white;
+}
+
+@utility ios-button-secondary {
+  @apply px-4 py-2 rounded-xl font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-[rgb(var(--muted))] text-[rgb(var(--foreground))];
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@utility animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[rgb(var(--muted))] rounded-full;
+}
